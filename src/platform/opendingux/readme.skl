@@ -9,9 +9,16 @@ gcw0 (rumble and main directories).
 
 Game content
 ------------
-You must put your game content in folder '/media/data/local/home/.openlara'
-Put the audio tracks in ogg format in '/media/data/local/home/.openlara/audio'
-Audio tracks must be named 'track_nn.ogg' where 'nn' is a secuential number (01, 02,...)
+You must put your game content in folder '/media/sdcard/OpenLara'
+If previous does not exist the folder game content is searched in '/media/data/local/home/.openlara'
+
+Put audio tracks in folder '/media/sdcard/OpenLara/audio' or '/media/data/local/home/.openlara/audio'
+depending on where game content is located.
+
+Audio tracks must be named 'track_nn[_lang].format' where:
+  - 'nn' is a secuential number (01, 02,...) or some specific name as CAFE, CANYON, LIFT, PRISON...
+  - 'lang' is an optional string with lang code: "_EN", "_FR", "_DE", "_ES", "_IT", "_PL", "_PT", "_RU", "_JA", "_GR", "_FI", "_CZ", "_CN", "_HU", "_SV"
+  - 'format' corresponnd to a valid audio format: ogg, mp3 or wav.
 
 Controls
 --------
@@ -19,7 +26,7 @@ In mainline OpenDingux all device buttons are seen as keyboard
 keystrokes and you must map controls as Keyboard only.
 
 By default not all controls are mapped and you must configure
-some of them
+some of them.
 
 Controls mapped out-of-the-box:
 

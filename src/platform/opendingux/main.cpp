@@ -577,12 +577,18 @@ int main(int argc, char **argv) {
     cacheDir[0] = saveDir[0] = contentDir[0] = 0;
 
     const char *home;
-    if (!(home = getenv("HOME")))
-        home = getpwuid(getuid())->pw_dir;
-    strcpy(contentDir, home);
-    strcat(contentDir, "/.openlara/");
-
+    const char sdcard[] = "/media/sdcard/OpenLara/";
     struct stat st = {0};
+    
+    // First try /media/sdcard/OpenLara
+    if (stat(sdcard, &st) == -1) {
+	    if (!(home = getenv("HOME")))
+		home = getpwuid(getuid())->pw_dir;
+	    strcpy(contentDir, home);
+	    strcat(contentDir, "/.openlara/");
+    } else {
+	    strncpy(contentDir,sdcard,25);
+    }
 
     if (stat(contentDir, &st) == -1) {
         LOG("no data directory found, please copy the original game content into %s\n", contentDir);
@@ -596,7 +602,7 @@ int main(int argc, char **argv) {
 
     if (stat(cacheDir, &st) == -1 && mkdir(cacheDir, 0777) == -1) {
         cacheDir[0] = 0;
-        LOG("can't create /home/.openlara/cache/\n");
+        LOG("can't create %scache/\n",contentDir);
     }
 
     timeval t;
