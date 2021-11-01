@@ -951,10 +951,15 @@ namespace Core {
 
     // init settings
         settings.version = SETTINGS_VERSION;
-
+#if defined(__ODBETA__)
+        settings.detail.setFilter   (Core::Settings::MEDIUM);
+        settings.detail.setLighting (Core::Settings::MEDIUM);
+        settings.detail.setShadows  (Core::Settings::MEDIUM);
+#else
         settings.detail.setFilter   (Core::Settings::HIGH);
         settings.detail.setLighting (Core::Settings::HIGH);
         settings.detail.setShadows  (Core::Settings::HIGH);
+#endif
         settings.detail.setWater    (Core::Settings::HIGH);
         settings.detail.simple       = false;
         settings.detail.vsync        = true;

@@ -1,0 +1,79 @@
+=============================================
+OpenLara for mainline OpenDingux (BUILD_DATE)
+=============================================
+
+This port is intended for mainline OpenDingux (current beta) and
+is based on the SDL2 platform using GLES2.
+Some code is borrowed from others platforms as nix (rumble) and 
+gcw0 (rumble and main directories).
+
+Game content
+------------
+You must put your game content in folder '/media/data/local/home/.openlara'
+Put the audio tracks in ogg format in '/media/data/local/home/.openlara/audio'
+Audio tracks must be named 'track_nn.ogg' where 'nn' is a secuential number (01, 02,...)
+
+Controls
+--------
+In mainline OpenDingux all device buttons are seen as keyboard
+keystrokes and you must map controls as Keyboard only.
+
+By default not all controls are mapped and you must configure
+some of them
+
+Controls mapped out-of-the-box:
+
+    Cursors         Movement
+    Left Stick      Movement
+    Right Stick     Look around
+    A               Action
+    B               Jump
+    Y               Walk
+    X               Draw weapon
+    Escape          Inventory
+    Start           Enter
+
+In menus:
+
+    A/Start         Accept/Enter
+    B/Escape        Cancel/Go back
+
+For reference this is the button and their keyboard values:
+
+    Device          OpenLara Keyboard
+    _____________   _________________
+    DPAD UP         UP
+    DPAD DOWN       DOWN
+    DPAD LEFT       LEFT
+    DPAD RIGHT      RIGHT
+    A               CTRL
+    Y               SHIFT
+    X               SPACE
+    L1              TAB
+    R1              BKSP
+    L2              PGUP
+    R2              PGDN
+    L3              PAD/
+    R3              PAD.
+    SELECT          ESCAPE
+    START           ENTER
+    POWER           HOME
+
+Visual options
+--------------
+Default values (I recommend not to raise this values)
+
+    Filtering Medium
+    Lighting  Medium
+    Shadows   Medium
+    Water     Low
+
+Build
+-----
+$ cd src/platform/opendingux
+$ make
+
+By default /opt/opendingux is the default toolchain location
+if your toolchain is located in another place you can launch make
+
+$make TOOLCHAIN=your_own_toolchain_location
