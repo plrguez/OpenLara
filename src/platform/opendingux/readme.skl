@@ -4,13 +4,15 @@ OpenLara for mainline OpenDingux (BUILD_DATE)
 
 This port is intended for mainline OpenDingux (current beta) and
 is based on the SDL2 platform using GLES3.
-Some code is borrowed from others platforms as nix (rumble) and 
-gcw0 (rumble and main directories).
+Some code have been borrowed from others platforms as nix (rumble)
+and gcw0 (rumble and main directories).
+
 
 Game content
 ------------
-You must put your game content in folder '/media/sdcard/OpenLara'
-If previous does not exist the folder game content is searched in '/media/data/local/home/.openlara'
+Game content in searched first in folder '/media/sdcard/OpenLara'
+If previous folder does not exist the folder game content is searched in
+folder '/media/data/local/home/.openlara'
 
 Put audio tracks in folder '/media/sdcard/OpenLara/audio' or '/media/data/local/home/.openlara/audio'
 depending on where game content is located.
@@ -20,10 +22,10 @@ Audio tracks must be named 'track_nn[_lang].format' where:
   - 'lang' is an optional string with lang code: "_EN", "_FR", "_DE", "_ES", "_IT", "_PL", "_PT", "_RU", "_JA", "_GR", "_FI", "_CZ", "_CN", "_HU", "_SV"
   - 'format' corresponnd to a valid audio format: ogg, mp3 or wav.
 
+
 Controls
 --------
-
-Controls mapped out-of-the-box:
+Default controls:
 
     Cursors         Movement
     Left Stick      Movement
@@ -48,14 +50,16 @@ Hotkeys
     L1 + Y          Quick save
     L1 + X          Quick load
 
+
 Visual options
 --------------
-Default values (I recommend not to raise this values)
+Default values (it is recommended not to increase these values)
 
     Filtering Medium
     Lighting  Medium
     Shadows   Medium
     Water     Low
+
 
 Build
 -----
