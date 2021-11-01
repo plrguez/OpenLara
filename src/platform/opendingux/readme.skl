@@ -3,7 +3,7 @@ OpenLara for mainline OpenDingux (BUILD_DATE)
 =============================================
 
 This port is intended for mainline OpenDingux (current beta) and
-is based on the SDL2 platform using GLES2.
+is based on the SDL2 platform using GLES3.
 Some code is borrowed from others platforms as nix (rumble) and 
 gcw0 (rumble and main directories).
 

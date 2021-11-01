@@ -15,7 +15,7 @@ MANUAL=readme.txt
 #DEBUG=1
 #Build with GLES2
 #Comment to build SDL2/GLES version, GLES3, which is an extension to GLES2 so we use -lGLESv2, too.
-GLES2=1
+#GLES2=1
 #OPENGL=1
 
 # Toolchain
