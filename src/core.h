@@ -70,6 +70,11 @@
     #endif
     #define INV_QUALITY
     #define INV_STEREO
+#if __ODBETA__
+    //#define INV_SINGLE_PLAYER
+    #define INV_VIBRATION
+    #define INV_GAMEPAD_ONLY
+#endif
 #elif __RPI__
     #define _OS_RPI    1
     #define _GAPI_GL   1
@@ -951,15 +956,9 @@ namespace Core {
 
     // init settings
         settings.version = SETTINGS_VERSION;
-#if defined(__ODBETA__)
-        settings.detail.setFilter   (Core::Settings::MEDIUM);
-        settings.detail.setLighting (Core::Settings::MEDIUM);
-        settings.detail.setShadows  (Core::Settings::MEDIUM);
-#else
         settings.detail.setFilter   (Core::Settings::HIGH);
         settings.detail.setLighting (Core::Settings::HIGH);
         settings.detail.setShadows  (Core::Settings::HIGH);
-#endif
         settings.detail.setWater    (Core::Settings::HIGH);
         settings.detail.simple       = false;
         settings.detail.vsync        = true;
@@ -1043,6 +1042,12 @@ namespace Core {
         settings.detail.setShadows  (Core::Settings::MEDIUM);
         settings.detail.setLighting (Core::Settings::MEDIUM);
         settings.audio.subtitles = false;
+    #endif
+
+    #if defined(__ODBETA__)
+        settings.detail.setFilter   (Core::Settings::MEDIUM);
+        settings.detail.setShadows  (Core::Settings::MEDIUM);
+        settings.detail.setLighting (Core::Settings::MEDIUM);
     #endif
 
     #ifdef _OS_PSC

@@ -80,7 +80,7 @@ void sndFree() {
 
 // Input
 
-#define MAX_JOYS 4
+#define MAX_JOYS 2
 #define JOY_DEAD_ZONE_STICK      8192
 #define WIN_W 640
 #define WIN_H 480
@@ -203,6 +203,29 @@ InputKey codeToInputKey(int code) {
         case SDL_SCANCODE_HOME       : return ikHome;
     }
     return ikNone;
+}
+
+JoyKey keyCodeToJoyKey(int code) {
+    switch (code) {
+    // keyboard
+        case SDL_SCANCODE_LEFT       : return jkLeft;
+        case SDL_SCANCODE_RIGHT      : return jkRight;
+        case SDL_SCANCODE_UP         : return jkUp;
+        case SDL_SCANCODE_DOWN       : return jkDown;
+        case SDL_SCANCODE_SPACE      : return jkX;
+        case SDL_SCANCODE_TAB        : return jkLB;
+        case SDL_SCANCODE_BACKSPACE  : return jkRB;
+        case SDL_SCANCODE_RETURN     : return jkStart;
+        case SDL_SCANCODE_ESCAPE     : return jkSelect;
+        case SDL_SCANCODE_LSHIFT     : return jkY;
+        case SDL_SCANCODE_LCTRL      : return jkA;
+        case SDL_SCANCODE_LALT       : return jkB;
+        case SDL_SCANCODE_PAGEUP     : return jkLT;
+        case SDL_SCANCODE_PAGEDOWN   : return jkRT;
+        case SDL_SCANCODE_KP_DIVIDE  : return jkL;
+        case SDL_SCANCODE_KP_PERIOD  : return jkR;
+    }
+    return jkNone;
 }
 
 JoyKey controllerCodeToJoyKey(int code) {
@@ -412,10 +435,16 @@ void inputUpdate() {
         switch (event.type) {
             case SDL_KEYDOWN: {
 		int scancode = event.key.keysym.scancode;
+#ifdef INV_GAMEPAD_ONLY
+		joyIndex = 0;
+		JoyKey key = keyCodeToJoyKey(scancode);
+                Input::setJoyDown(joyIndex, key, 1);
+#else
                 InputKey key = codeToInputKey(scancode);
 		if (key != ikNone) {
 		    Input::setDown(key, 1);
 		}
+#endif
 
 #ifndef _GAPI_GLES 
                 if (scancode == SDL_SCANCODE_RETURN) {
@@ -429,11 +458,16 @@ void inputUpdate() {
 
             case SDL_KEYUP: {
 		int scancode = event.key.keysym.scancode;
+#ifdef INV_GAMEPAD_ONLY
+		joyIndex = 0;
+		JoyKey key = keyCodeToJoyKey(scancode);
+                Input::setJoyDown(joyIndex, key, 0);
+#else
                 InputKey key = codeToInputKey(scancode);
 		if (key != ikNone) {
 		    Input::setDown(key, 0);
                 }
-                break;
+#endif
             }
 
             // Joystick reading using the modern SDL GameController interface

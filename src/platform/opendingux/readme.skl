@@ -22,11 +22,6 @@ Audio tracks must be named 'track_nn[_lang].format' where:
 
 Controls
 --------
-In mainline OpenDingux all device buttons are seen as keyboard
-keystrokes and you must map controls as Keyboard only.
-
-By default not all controls are mapped and you must configure
-some of them.
 
 Controls mapped out-of-the-box:
 
@@ -34,37 +29,20 @@ Controls mapped out-of-the-box:
     Left Stick      Movement
     Right Stick     Look around
     A               Action
-    B               Jump
-    Y               Walk
-    X               Draw weapon
-    Escape          Inventory
+    B               Roll
+    Y               Draw weapon
+    X               Jump
+    L1              Look
+    R1              Walk
+    L2              Duck
+    R2              Dash
+    Select          Inventory
     Start           Enter
 
 In menus:
 
     A/Start         Accept/Enter
-    B/Escape        Cancel/Go back
-
-For reference this is the button and their keyboard values:
-
-    Device          OpenLara Keyboard
-    _____________   _________________
-    DPAD UP         UP
-    DPAD DOWN       DOWN
-    DPAD LEFT       LEFT
-    DPAD RIGHT      RIGHT
-    A               CTRL
-    Y               SHIFT
-    X               SPACE
-    L1              TAB
-    R1              BKSP
-    L2              PGUP
-    R2              PGDN
-    L3              PAD/
-    R3              PAD.
-    SELECT          ESCAPE
-    START           ENTER
-    POWER           HOME
+    B/Select        Cancel/Go back
 
 Visual options
 --------------
