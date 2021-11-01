@@ -9,7 +9,7 @@
 #define SUBTITLES_SPEED  0.1f
 #define TEXT_LINE_HEIGHT 18
 
-#if defined(_OS_TNS)
+#if defined(_OS_TNS) || defined(__ODBETA__)
     #define UI_SHOW_FPS
 #endif
 
