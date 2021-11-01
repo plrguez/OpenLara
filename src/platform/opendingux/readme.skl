@@ -44,6 +44,10 @@ In menus:
     A/Start         Accept/Enter
     B/Select        Cancel/Go back
 
+Hotkeys
+    L1 + Y          Quick save
+    L1 + X          Quick load
+
 Visual options
 --------------
 Default values (I recommend not to raise this values)

@@ -453,6 +453,16 @@ void inputUpdate() {
                     }
                 }
 #endif
+                // Quick save and load
+                if (scancode == SDL_SCANCODE_TAB) {
+                    // L1 + Y Quick save
+                    if (isKeyPressed(SDL_SCANCODE_LSHIFT) && isKeyPressed(SDL_SCANCODE_TAB)) {
+                        Game::quickSave();
+                    // L1 + X Quick load
+                    } else if (isKeyPressed(SDL_SCANCODE_SPACE) && isKeyPressed(SDL_SCANCODE_TAB)) {
+                        Game::quickLoad();
+                    }
+                }
                 break;
             }
 
