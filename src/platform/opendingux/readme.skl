@@ -3,7 +3,7 @@ OpenLara for mainline OpenDingux (BUILD_DATE)
 =============================================
 
 This port is intended for mainline OpenDingux (current beta) and
-is based on the SDL2 platform using GLES3.
+is based on the SDL2 platform using BUILD_TYPE.
 Some code have been borrowed from others platforms as nix (rumble)
 and gcw0 (rumble and main directories).
 
@@ -57,16 +57,27 @@ Default values (it is recommended not to increase these values)
 
     Filtering Medium
     Lighting  Medium
-    Shadows   Medium
+    Shadows   Low
     Water     Low
 
+Shadows setting have high impact in performance
 
 Build
 -----
+Change to the directory where opendingux platform is located
 $ cd src/platform/opendingux
+
+To build SDL2/GLES3 use the commmand
 $ make
 
-By default /opt/opendingux is the default toolchain location
-if your toolchain is located in another place you can launch make
+To build SDL2/GLES2 use the commmand
+$ make GLES2=1
+
+To build SDL2/OpenGL use the commmand
+$ make OPENGL=2
+
+By default '/opt/opendingux' is the default toolchain location
+if your toolchain is located in another place you can launch make passing
+TOOLCHAIN variable
 
 $make TOOLCHAIN=your_own_toolchain_location

@@ -1334,6 +1334,10 @@ namespace GAPI {
             support.shadowSampler = false; // TODO
         #endif
 
+        #if (defined(__ODBETA__) && defined(_SDL2_OPENGL))
+            support.VBO = false;
+        #endif
+
         #ifdef PROFILE
             support.profMarker = extSupport("_KHR_debug");
             support.profTiming = extSupport("_timer_query");
@@ -1385,7 +1389,7 @@ namespace GAPI {
             }
         }
         
-    #ifdef _GAPI_GLES
+    #if defined(_GAPI_GLES) || (defined(__ODBETA__) && defined(_SDL2_OPENGL))
         if (GLES3) {
             // vertex
             strcat(GLSL_HEADER_VERT, "#version 300 es\n"

@@ -70,11 +70,13 @@
     #endif
     #define INV_QUALITY
     #define INV_STEREO
-#if __ODBETA__
-    //#define INV_SINGLE_PLAYER
-    #define INV_VIBRATION
-    #define INV_GAMEPAD_ONLY
-#endif
+    #if __ODBETA__
+        #define INV_VIBRATION
+        #define INV_GAMEPAD_ONLY
+        #ifdef _SDL2_OPENGL
+            #define DYNGEOM_NO_VBO
+        #endif
+    #endif
 #elif __RPI__
     #define _OS_RPI    1
     #define _GAPI_GL   1
@@ -1046,7 +1048,7 @@ namespace Core {
 
     #if defined(__ODBETA__)
         settings.detail.setFilter   (Core::Settings::MEDIUM);
-        settings.detail.setShadows  (Core::Settings::MEDIUM);
+        settings.detail.setShadows  (Core::Settings::LOW);
         settings.detail.setLighting (Core::Settings::MEDIUM);
     #endif
 
