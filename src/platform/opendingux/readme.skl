@@ -7,11 +7,14 @@ is based on the SDL2 platform using BUILD_TYPE.
 Some code have been borrowed from others platforms as nix (rumble)
 and gcw0 (rumble and main directories).
 
+OpenGL versions use GL4ES wrapper on top of OpenGL ES 2.0.
+https://github.com/ptitSeb/gl4es
+
 
 Game content
 ------------
 Game content in searched first in folder '/media/sdcard/OpenLara'
-If previous folder does not exist the folder game content is searched in
+If previous folder does not exist the game content is searched in
 folder '/media/data/local/home/.openlara'
 
 Put audio tracks in folder '/media/sdcard/OpenLara/audio' or '/media/data/local/home/.openlara/audio'
@@ -20,7 +23,7 @@ depending on where game content is located.
 Audio tracks must be named 'track_nn[_lang].format' where:
   - 'nn' is a secuential number (01, 02,...) or some specific name as CAFE, CANYON, LIFT, PRISON...
   - 'lang' is an optional string with lang code: "_EN", "_FR", "_DE", "_ES", "_IT", "_PL", "_PT", "_RU", "_JA", "_GR", "_FI", "_CZ", "_CN", "_HU", "_SV"
-  - 'format' corresponnd to a valid audio format: ogg, mp3 or wav.
+  - 'format' correspond to a valid audio format: ogg, mp3 or wav.
 
 
 Controls
@@ -65,19 +68,28 @@ Shadows setting have high impact in performance
 Build
 -----
 Change to the directory where opendingux platform is located
-$ cd src/platform/opendingux
+
+    $ cd src/platform/opendingux
+
+Put your toolchain in path
+
+    $ export PATH=/opt/opendingux/usr/bin:$PATH
 
 To build SDL2/GLES3 use the commmand
-$ make
+
+    $ make
 
 To build SDL2/GLES2 use the commmand
-$ make GLES2=1
+
+    $ make GLES2=1
 
 To build SDL2/OpenGL use the commmand
-$ make OPENGL=2
 
-By default '/opt/opendingux' is the default toolchain location
-if your toolchain is located in another place you can launch make passing
-TOOLCHAIN variable
+    $ make OPENGL=2
 
-$make TOOLCHAIN=your_own_toolchain_location
+By default '/opt/opendingux' is the default toolchain location.
+
+If your toolchain is located in another place you can launch make
+passing the TOOLCHAIN variable
+
+    $ make TOOLCHAIN=your_own_toolchain_location
