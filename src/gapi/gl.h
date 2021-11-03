@@ -631,7 +631,7 @@ namespace GAPI {
                 strcat(defines, "#define VERT_CAUSTICS\n");
             #endif
 
-            #if defined(_OS_RPI) || defined(_OS_CLOVER) || defined(_OS_GCW0) || (defined (__SDL2__) && defined(_GAPI_GLES))
+            #if defined(_OS_RPI) || defined(_OS_CLOVER) || defined(_OS_GCW0) || (defined (__SDL2__) && defined(_GAPI_GLES)) || (defined (__SDL2__) && defined(__ODBETA__) && defined(_SDL2_OPENGL))
                 strcat(defines, "#define OPT_VLIGHTPROJ\n");
                 strcat(defines, "#define OPT_VLIGHTVEC\n");
                 strcat(defines, "#define OPT_SHADOW_ONETAP\n");
