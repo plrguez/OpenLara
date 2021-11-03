@@ -1347,6 +1347,8 @@ namespace GAPI {
             glGetIntegerv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &support.maxAniso);
         #ifdef _GAPI_GLES
             glGetIntegerv(GL_MAX_VARYING_VECTORS, &support.maxVectors);
+        #elif (defined(__ODBETA__) && defined(_SDL2_OPENGL))
+            glGetIntegerv(GL_MAX_VARYING_VECTORS, &support.maxVectors);
         #else
             support.maxVectors = 16;
         #endif
