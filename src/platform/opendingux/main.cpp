@@ -454,7 +454,7 @@ void inputUpdate() {
                 }
 #endif
                 // Quick save and load
-                if (scancode == SDL_SCANCODE_TAB) {
+                if (scancode == SDL_SCANCODE_TAB || scancode == SDL_SCANCODE_LSHIFT || scancode == SDL_SCANCODE_SPACE) {
                     // L1 + Y Quick save
                     if (isKeyPressed(SDL_SCANCODE_LSHIFT) && isKeyPressed(SDL_SCANCODE_TAB)) {
                         Game::quickSave();
