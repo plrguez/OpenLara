@@ -1311,7 +1311,7 @@ namespace GAPI {
             support.texRG = false;
             support.discardFrame = false;
         #endif
-        #ifdef _GAPI_GLES
+        #if defined(_GAPI_GLES) || (defined(__ODBETA__) && defined(_SDL2_OPENGL))
             support.derivatives = GLES3 || _GL_OES_standard_derivatives; 
             support.tex3D       = GLES3;
         #else
