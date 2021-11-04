@@ -1048,7 +1048,7 @@ namespace Core {
 
     #if defined(__ODBETA__)
         settings.detail.setFilter   (Core::Settings::MEDIUM);
-        settings.detail.setShadows  (Core::Settings::LOW);
+        settings.detail.setShadows  (Core::Settings::MEDIUM);
         settings.detail.setLighting (Core::Settings::MEDIUM);
     #endif
 

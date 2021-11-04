@@ -75,10 +75,8 @@ Option|default value
 --|--
 Filtering |Medium
 Lighting  |Medium
-Shadows   |Low
+Shadows   |Medium
 Water     |Low
-
->Shadows setting have high impact in performance
 
 ### How to Build
 

@@ -60,10 +60,8 @@ Default values (it is recommended not to increase these values)
 
     Filtering Medium
     Lighting  Medium
-    Shadows   Low
+    Shadows   Medium
     Water     Low
-
-Shadows setting have high impact in performance
 
 Build
 -----

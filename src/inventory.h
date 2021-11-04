@@ -8,7 +8,7 @@
 
 #define INV_MAX_ITEMS  32
 #define INV_MAX_RADIUS 688.0f
-#if defined(_OS_PSP) || defined(_OS_3DS) || defined(_OS_GCW0)
+#if defined(_OS_PSP) || defined(_OS_3DS) || defined(_OS_GCW0) || defined(__ODBETA__)
     #define INV_BG_SIZE    256
 #else
     #define INV_BG_SIZE    512
