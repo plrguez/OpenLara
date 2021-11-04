@@ -257,7 +257,7 @@
 
 #if defined(_OS_3DS)
     #define SHADOW_TEX_SIZE      512
-#elif defined(_OS_GCW0)
+#elif defined(_OS_GCW0) || defined(__ODBETA__)
     #define SHADOW_TEX_SIZE      256
 #elif defined(_OS_PSV)
     #define SHADOW_TEX_SIZE      1024
