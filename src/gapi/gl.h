@@ -116,9 +116,11 @@
     #endif //GAPI_GLES2
 
     // These are needed for both GLES2 and GLES3 on SDL2
+    #if !(defined(__ODBETA__) && defined (_GAPI_GLES2))
     #define glGenVertexArrays(...)
     #define glDeleteVertexArrays(...)
     #define glBindVertexArray(...)
+    #endif
     #define glGetProgramBinary(...)
     #define glProgramBinary(...)
 
@@ -127,6 +129,12 @@
     #define PFNGLBINDVERTEXARRAYPROC    PFNGLBINDVERTEXARRAYOESPROC
     #define PFNGLGETPROGRAMBINARYPROC   PFNGLGETPROGRAMBINARYOESPROC
     #define PFNGLPROGRAMBINARYPROC      PFNGLPROGRAMBINARYOESPROC
+
+    #if (defined(__ODBETA__) && defined (_GAPI_GLES2))
+    #define glGenVertexArrays    glGenVertexArraysOES
+    #define glDeleteVertexArrays glDeleteVertexArraysOES
+    #define glBindVertexArray    glBindVertexArrayOES
+    #endif
 
     #else // We want OpenGL on SDL2, not GLES
         #include <SDL2/SDL_opengl.h>
@@ -1182,7 +1190,7 @@ namespace GAPI {
                 GetProcOGL(glDiscardFramebufferEXT);
         #endif
 
-        #if defined(_OS_WIN) || defined(_OS_LINUX) || defined(_OS_GCW0) || (defined(__SDL2__) && !defined(_GAPI_GLES)) 
+        #if defined(_OS_WIN) || defined(_OS_LINUX) || defined(_OS_GCW0) || (defined(__SDL2__) && (!defined(_GAPI_GLES) || defined(__ODBETA__)) 
             #ifdef _OS_WIN
                 GetProcOGL(glActiveTexture);
             #endif
@@ -1194,12 +1202,16 @@ namespace GAPI {
             #endif
 
             #if defined(_OS_WIN) || defined(_OS_LINUX) || (defined(__SDL2__) && (defined(_GAPI_GLES2) || defined(_SDL2_OPENGL)))
+                #if !(defined(__SDL2__) && defined(_GAPI_GLES) && defined(__ODBETA__)) 
                 GetProcOGL(glGenerateMipmap);
+                #endif
                 #ifdef _OS_WIN
                     GetProcOGL(glTexImage3D);
                 #endif
 
+                #if !(defined(__SDL2__) && defined(_GAPI_GLES) && defined(__ODBETA__))  
                 GetProcOGL(glGetStringi);
+                #endif
 
                 #ifdef PROFILE
                     GetProcOGL(glObjectLabel);
@@ -1212,6 +1224,7 @@ namespace GAPI {
                     GetProcOGL(glEndQuery);
                 #endif
 
+                #if !(defined(__SDL2__) && defined(_GAPI_GLES) && defined(__ODBETA__)) 
                 GetProcOGL(glCreateProgram);
                 GetProcOGL(glDeleteProgram);
                 GetProcOGL(glLinkProgram);
@@ -1253,6 +1266,7 @@ namespace GAPI {
                 GetProcOGL(glBindBuffer);
                 GetProcOGL(glBufferData);
                 GetProcOGL(glBufferSubData);
+                #endif
             #endif
 
             GetProcOGL(glGenVertexArrays);
@@ -1307,7 +1321,9 @@ namespace GAPI {
 
         #ifdef _GAPI_GLES2 // TODO
             support.shaderBinary = false;
+            #if !defined(__ODBETA__)
             support.VAO = false;
+            #endif
             support.texRG = false;
             support.discardFrame = false;
         #endif
@@ -1330,7 +1346,9 @@ namespace GAPI {
 
         #ifdef SDL2_GLES
             support.shaderBinary  = false; // TODO
+            #if !defined(__ODBETA__)
             support.VAO           = false; // TODO
+            #endif
             support.shadowSampler = false; // TODO
         #endif
 
