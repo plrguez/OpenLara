@@ -1,13 +1,11 @@
 # Build options
 #DEBUG=1
 
-#By default SDL2/OpenGL 2 is built
+#By default SDL2/GLES2 is built
 
 #Uncomment to build SDL2/GLES version, GLES2
-#SDL2/GLES3 can be built (GLES2=2), but JZ4770 is only GLES2
 #GLES2=1
 
-#Recommended build for OD beta OPENGL=2
 #OpenGL in OpenDingux use GL4ES
 #  - 2 for OpenGL 2.1 GLES 2.0 backend
 #  - 1 for OpenGL 1.5 GLES 1.1 backend
@@ -18,21 +16,16 @@ SRCS=main.cpp ../../libs/stb_vorbis/stb_vorbis.c ../../libs/minimp3/minimp3.cpp 
 
 #Targets
 BIN=OpenLara
-ifeq ($(GLES2),2)
-	OPK=$(BIN)_gles3.opk
-	BUILD_TYPE=GLES3
+ifeq ($(OPENGL),1)
+	OPK=$(BIN)_opengl1.opk
+	BUILD_TYPE=OpenGL 1.5
 else
-	ifeq ($(OPENGL),1)
-		OPK=$(BIN)_opengl1.opk
-		BUILD_TYPE=OpenGL 1.5
+	ifeq ($(OPENGL),2)
+		OPK=$(BIN)_opengl.opk
+		BUILD_TYPE=OpenGL
 	else
-		ifeq ($(GLES2),1)
-			OPK=$(BIN)_gles2.opk
-			BUILD_TYPE=GLES2
-		else
-			OPK=$(BIN)_opengl.opk
-			BUILD_TYPE=OpenGL
-		endif
+		OPK=$(BIN)_gles2.opk
+		BUILD_TYPE=GLES2
 	endif
 endif
 
@@ -63,13 +56,10 @@ SDL_LIBS    := $(shell $(SDL_CONFIG) --libs)
 # Flags
 DEFS = -D__SDL2__ -D__ODBETA__
 
-ifdef GLES2
-	DEFS += -DSDL2_GLES
-	ifneq ($(GLES2),2)
-		DEFS += -D_GAPI_GLES2
-	endif
-else
+ifdef OPENGL
 	DEFS += -D_SDL2_OPENGL
+else
+	DEFS += -DSDL2_GLES -D_GAPI_GLES2
 endif
 
 F_OPTS = -fno-exceptions -fno-rtti -ffunction-sections -fdata-sections
@@ -85,10 +75,10 @@ CFLAGS+=$(DEFS) $(O_OPTS) $(F_OPTS) $(W_OPTS) $(SDL_FLAGS)
 
 # Libraries
 O_LIBS+= 
-ifdef GLES2
-	L_LIBS+=-lGLESv2 -lEGL
-else
+ifdef OPENGL
 	L_LIBS+=-lGL
+else
+	L_LIBS+=-lGLESv2 -lEGL
 endif
 L_LIBS+=-lpthread -lrt -lm -Loaudio -ludev -lshake
 LDFLAGS+=$(SDL_LIBS) $(L_LIBS) $(O_LIBS)

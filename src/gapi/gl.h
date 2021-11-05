@@ -1190,7 +1190,7 @@ namespace GAPI {
                 GetProcOGL(glDiscardFramebufferEXT);
         #endif
 
-        #if defined(_OS_WIN) || defined(_OS_LINUX) || defined(_OS_GCW0) || (defined(__SDL2__) && (!defined(_GAPI_GLES) || defined(__ODBETA__)) 
+        #if defined(_OS_WIN) || defined(_OS_LINUX) || defined(_OS_GCW0) || (defined(__SDL2__) && (!defined(_GAPI_GLES) || defined(__ODBETA__)))
             #ifdef _OS_WIN
                 GetProcOGL(glActiveTexture);
             #endif
