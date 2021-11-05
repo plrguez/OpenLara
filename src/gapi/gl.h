@@ -120,9 +120,9 @@
     #define glGenVertexArrays(...)
     #define glDeleteVertexArrays(...)
     #define glBindVertexArray(...)
-    #endif
     #define glGetProgramBinary(...)
     #define glProgramBinary(...)
+    #endif
 
     #define PFNGLGENVERTEXARRAYSPROC    PFNGLGENVERTEXARRAYSOESPROC
     #define PFNGLDELETEVERTEXARRAYSPROC PFNGLDELETEVERTEXARRAYSOESPROC
@@ -134,6 +134,8 @@
     #define glGenVertexArrays    glGenVertexArraysOES
     #define glDeleteVertexArrays glDeleteVertexArraysOES
     #define glBindVertexArray    glBindVertexArrayOES
+    #define glGetProgramBinary   glGetProgramBinaryOES
+    #define glProgramBinary      glProgramBinaryOES
     #endif
 
     #else // We want OpenGL on SDL2, not GLES
@@ -1320,8 +1322,8 @@ namespace GAPI {
         support.texMaxLevel    = GLES3 || extSupport("_texture_max_level");
 
         #ifdef _GAPI_GLES2 // TODO
-            support.shaderBinary = false;
             #if !defined(__ODBETA__)
+            support.shaderBinary = false;
             support.VAO = false;
             #endif
             support.texRG = false;
@@ -1345,8 +1347,8 @@ namespace GAPI {
         support.texHalf        = support.texHalfLinear || extSupport("_texture_half_float");
 
         #ifdef SDL2_GLES
-            support.shaderBinary  = false; // TODO
             #if !defined(__ODBETA__)
+            support.shaderBinary  = false; // TODO
             support.VAO           = false; // TODO
             #endif
             support.shadowSampler = false; // TODO
