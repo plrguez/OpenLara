@@ -12,7 +12,7 @@ Thanks to the OpenDingux and OpenLara dev teams.
 
 ### Build versions
 
-There are four available builds: GLES2, GLES3, OpenGL and OpenGL1.
+There are three available builds: GLES2, OpenGL and OpenGL 1
 
 For regular use the **OpenGL** version is the recommended and have the best performance _(See Visual options)_
 
@@ -88,17 +88,13 @@ Put your toolchain in path
 
     $ export PATH=/opt/opendingux/usr/bin:$PATH
 
-To build SDL2/GLES3 use the commmand
+To build SDL2/OpenGL use the commmand
 
     $ make
 
 To build SDL2/GLES2 use the commmand
 
     $ make GLES2=1
-
-To build SDL2/OpenGL use the commmand
-
-    $ make OPENGL=2
 
 By default `/opt/opendingux` is the default toolchain location. 
 
