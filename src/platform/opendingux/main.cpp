@@ -616,6 +616,10 @@ int main(int argc, char **argv) {
 
     Core::width  = w;
     Core::height = h;
+    
+    // Fix aspect ratio for 320x480 devices (RG280V/M) 
+    float aspect = float(w) / float(h);
+    Core::aspectFix = (4.0f / 3.0f) / aspect;
 
     SDL_GLContext context = SDL_GL_CreateContext(sdl_window);
 
