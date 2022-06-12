@@ -117,6 +117,9 @@
     // etnaviv driver has a bug with cubemap mips generator
     #undef USE_CUBEMAP_MIPS
 
+    #if __GCW0_DRM__
+        #define INV_QUALITY
+    #endif
     #define INV_SINGLE_PLAYER
     #define INV_VIBRATION
     #define INV_GAMEPAD_ONLY

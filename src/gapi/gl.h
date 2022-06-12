@@ -160,12 +160,21 @@
     #define GL_TEXTURE_COMPARE_FUNC     0x884D
     #define GL_COMPARE_REF_TO_TEXTURE   0x884E
 
+    #if defined(__GCW0_DRM__)
+        #define GL_NUM_EXTENSIONS       0x821D
+    #endif
+
     #undef  GL_RG
     #undef  GL_RG32F
     #undef  GL_RG16F
     #undef  GL_RGBA32F
     #undef  GL_RGBA16F
     #undef  GL_HALF_FLOAT
+
+    #if defined(__GCW0_DRM__)
+        #define GL_R8       GL_R8_EXT
+        #define GL_RED      GL_RED_EXT
+    #endif
 
     #define GL_RG           GL_RGBA
     #define GL_RGBA32F      GL_RGBA
@@ -1159,7 +1168,7 @@ namespace GAPI {
 
 
     bool extSupport(const char *str) {
-        #if !defined(_GAPI_GLES2) && !_OS_MAC && !__ODBETA__
+        #if !defined(_GAPI_GLES2) && !_OS_MAC && !__ODBETA__ && !__GCW0_DRM__
         if (glGetStringi != NULL) {
             GLint count = 0;
             glGetIntegerv(GL_NUM_EXTENSIONS, &count); 
